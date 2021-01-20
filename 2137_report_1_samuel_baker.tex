@@ -68,7 +68,7 @@
 
 \section*{Summary}
 
-Type the summary of your experiment and results here.  
+In this lab, I attempted to familiarize myself with LaTeX and Github. I did this by first creating my own repository on GitHub and using a LaTeX template in order to create my report for this lab. In the report, I recreated a figure and included Verilog code given to me in my own LaTeX document. All of this changes and files were then uploaded to a GitHub repository. At the end of the lab, I had become familiar with both GitHub and the basics of using LaTeX.
 
 
 \section*{Q\&A}
@@ -76,23 +76,27 @@ Type the summary of your experiment and results here.
 \begin{enumerate}
 	\item What is your GitHub username?
 	
-	My 
+	My GitHub username is sg\_baker.
 	
 	\item What LaTeX enviorment produces a bulleted (non-numbered) list?
 	
-	jkdfj
+	The LaTeX enviorment that produces a bulleted list is the \texttt{itemize} enviorment.
 	
-	\item Write the equation y = 1/2 e\^2t using LaTeX equation formatting.
+	\item Write the equation y(t) = 1/2 e\^t using LaTeX equation formatting.
 	
-	kdfjdf
+	\begin{equation}
+		y(t) = \frac{1}{2}e^t
+	\end{equation}
 	
 	\item What is the shortcut key for compiling your LaTeX document?
 	
-	jkljklj
+	The shortcut key is F6 to compile, and F5 is to run and view the document.
 \end{enumerate}
 
 
 \section*{Results}
+
+First, I was asked to recreate the figure as shown in Figure 1. I did this by creating a table and a PNG file together in one figure in LaTeX. Then, I was asked to commit this change to the GitHub repository for this lab. The result of that can be seen in Figure 2. These results show that I have become familiar with both GitHub and LaTeX.
 
 \begin{figure}[ht]\centering
 	\begin{tabular}{c|c|c}
@@ -111,12 +115,15 @@ Type the summary of your experiment and results here.
 	\caption{Table and simulation waveform to reproduce}
 	
 \end{figure}
-	 
+
+\begin{figure}[ht]\centering
+	\includegraphics[width=1\textwidth]{github_screenshot.PNG}
+	\caption{Screenshot of changes made to GitHub repository}
+\end{figure}
 
 
 \section*{Code}
 
 \Verilog[caption=Example Code from Canvas]{lab1_example_code.sv}
-
 
 \end{document}
