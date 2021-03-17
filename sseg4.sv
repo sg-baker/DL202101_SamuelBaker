@@ -28,7 +28,7 @@ module sseg4(
     );
     
     mux2 #( .N(16) ) mux2_0 (
-        .in0(bcd11_mux),
+        .in0(bcd11_mux2),
         .in1(data),
         .sel(hex_dec),
         .out(mux2_mux4)    
