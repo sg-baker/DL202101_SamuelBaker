@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-// ELC 2137, John Miller, 2019-11-08 
+// ELC 2137, Samuel Baker, 4-21-2021 
 
 module debounce_test();
 
