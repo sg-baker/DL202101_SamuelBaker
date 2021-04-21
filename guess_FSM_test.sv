@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 // ELC 2137, Samuel Baker, 4-21-2021 
 
-module debounce_test();
+module guess_FSM_test();
 
     reg clk, reset;
     reg [3:0] b;
