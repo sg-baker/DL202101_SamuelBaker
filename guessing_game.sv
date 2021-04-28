@@ -17,7 +17,7 @@ module guessing_game(
     
     // internal connections
     wire [3:0] debounced_b;
-    wire [1:0] count_mux;
+    wire [1:0] count_mux0, count_mux1;
     wire guess_clk;
     wire [3:0] dummy_wire;
     wire win, lose;
@@ -27,57 +27,62 @@ module guessing_game(
     
     // debouncing buttons
     debounce #(.N(2)) db0 (
-        .clk(clk), .reset(reset),
+        .clk(clk), .reset(btnC),
         .in(btnU), .out(debounced_b[0]),
         .tick(dummy_wire[0])
     );
     
     debounce #(.N(2)) db1 (
-        .clk(clk), .reset(reset),
+        .clk(clk), .reset(btnC),
         .in(btnR), .out(debounced_b[1]),
         .tick(dummy_wire[1])
     );
     
     debounce #(.N(2)) db2 (
-        .clk(clk), .reset(reset),
+        .clk(clk), .reset(btnC),
         .in(btnD), .out(debounced_b[2]),
         .tick(dummy_wire[2])
     );
     
     debounce #(.N(2)) db3 (
-        .clk(clk), .reset(reset),
+        .clk(clk), .reset(btnC),
         .in(btnL), .out(debounced_b[3]),
         .tick(dummy_wire[3])
     );
     
     // dividing clock and MUX
+    ncount #(.N(25)) counter0 (
+        .clk(clk), .rst(btnC),
+        .msbs(count_mux0)
+    );
     
-    ncount #(.N(16)) counter (
-        .clk(clk), .rst(reset),
-        .msbs(count_mux)
+    // Hard difficulty
+    ncount #(.N(21)) counter1 (
+        .clk(clk), .rst(btnC),
+        .msbs(count_mux1)
     );
     
     // MUX
     mux2 MUX(
-        .in0(clk), .in1(count_mux[0]),
+        .in0(count_mux0[0]), .in1(count_mux1[0]),
         .sel(sw[0]), .out(guess_clk)
     );
     
     // Guess FSM
     
     guess_FSM guess(
-        .clk(guess_clk), .reset(reset),
+        .clk(guess_clk), .reset(btnC),
         .b(debounced_b), .win(win),
         .lose(lose), .y(y)
     );
     
     // This just keeps the seven-segment display off
-    assign an = 4'b1111;
-    assign seg = 7'b1111111;
+    assign an = ~y;
+    assign seg = 7'b0000000;
     
-    assign led[3:0] = y;
-    assign led[5:4] = lose;
-    assign led[7:6] = win;
+    assign led[3:0] = 4'b0000;
+    assign led[5:4] = {lose, lose};
+    assign led[7:6] = {win, win};
     
     // Keeps the rest of the led's off
     assign led[15:8] = 8'b00000000;
